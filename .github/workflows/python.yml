@@ -18,6 +18,5 @@ jobs:
       - name: Установка зависимостей
         run: |
           pip install -r requirements.txt
-
       - name: Запуск тестов
         run: pytest test_api.py -v
