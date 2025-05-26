@@ -86,6 +86,8 @@ def test_user_not_found():
 
 # Ошибка — неверные данные для создания поста
 def test_create_post_invalid_data():
-    payload = {"title": "foo"}  # Не хватает body и userId
+    payload = {"title": "foo"}  # Только title
     response = requests.post("https://jsonplaceholder.typicode.com/posts", json=payload)
-    assert response.status_code in [400, 422]  # В зависимости от API
+    assert response.status_code == 201  # API принимает неполные данные
+    result = response.json()
+    assert "id" in result  # Проверяем, что пост создан
